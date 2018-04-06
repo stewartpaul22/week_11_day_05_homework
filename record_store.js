@@ -9,6 +9,13 @@ RecordStore.prototype.addRecord = function (record) {
   this.inventory.push(record);
 };
 
+RecordStore.prototype.printProperties = function(record) {
+  let result = "";
+  for (var property in record) {
+    result += property + ": " + record[property] + ". ";
+  }
+  return result;
+};
 
 
 module.exports = RecordStore;
