@@ -14,8 +14,15 @@ RecordStore.prototype.printProperties = function(record) {
   for (var property in record) {
     result += property + ": " + record[property] + ". ";
   }
-  return result;
+  return result + "\n";
 };
 
+RecordStore.prototype.listInventory = function () {
+  let result = ""
+  for (let record of this.inventory) {
+    result += this.printProperties(record);
+  }
+  return result;
+};
 
 module.exports = RecordStore;
