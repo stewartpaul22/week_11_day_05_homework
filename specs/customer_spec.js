@@ -35,11 +35,33 @@ describe('Customer', function(){
     assert.strictEqual(customer1.wallet, 0.00);
   });
 
-  // customer can buy record
+  it('can add have funds added to wallet', function(){
+    customer1.addFundsToWallet(50.00);
+    assert.strictEqual(customer1.wallet, 50.00);
+  });
 
+  // customer can buy record from a record store - has funds
+  // it('can buy a record from a store - has funds', function(){
+  //   customer1.buyRecordFromStore(record_store, record1);
+  //   // customer balance decreases
+  //
+  //   // record collection increases
+  //   // record store balance increases
+  //   // record store inventory decreases
+  // })
 
+  // customer cannot buy record from a record store - no funds
+  xit('cannot buy a record from a store - no funds', function(){
+    // customer balance unchanged
 
-  //Create a RecordCollector (or Customer) constructor who can buy and sell records.
+    // record collection unchanged
+    // record store balance unchanged
+    // record store inventory unchanged
+  })
+
+  // customer can buy record from another customer
+
+  // customer can sell a record to another customer
 
   //The RecordCollector should have cash that increase and decreases with buying and selling.
 
