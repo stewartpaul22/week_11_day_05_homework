@@ -27,21 +27,19 @@ RecordStore.prototype.listInventory = function () {
   // for enumeration, check if there is a stringBuilder
 };
 
-// RecordStore.prototype.sellRecord = function (record, customer) {
-//   if (customer.wallet >= record.price) {
-//     this.balance += record.price;
-//     customer.wallet -= record.price;
-//     customer.recordCollection.push(record);
-//     const index = this.inventory.indexOf(record);
-//     this.inventory.splice(index, 1);
-//   }
-// };
-
 RecordStore.prototype.sellRecord = function (record) {
+  this.increaseBalance(record);
+  this.removeRecordFromInventory(record);
+  return record;
+};
+
+RecordStore.prototype.increaseBalance = function(record) {
   this.balance += record.price;
+};
+
+RecordStore.prototype.removeRecordFromInventory = function (record) {
   const index = this.inventory.indexOf(record);
   this.inventory.splice(index, 1);
-  return record;
 };
 
 RecordStore.prototype.getInventoryValue = function() {
