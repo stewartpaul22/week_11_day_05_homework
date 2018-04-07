@@ -11,8 +11,12 @@ Customer.prototype.addFundsToWallet = function (amount) {
 Customer.prototype.buyRecordfromStore = function (store, record) {
   if (this.wallet >= record.price) {
     this.recordCollection.push(store.sellRecord(record));
-    this.wallet -= record.price;
+    this.decreaseWallet(record);
   }
+};
+
+Customer.prototype.decreaseWallet = function(record) {
+  this.wallet -= record.price;
 };
 
 
