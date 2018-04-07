@@ -53,12 +53,36 @@ describe('Record Store', function(){
   it('should be able to sell a record that increases the balance and reduces the inventory', function(){
     record_store.addRecord(record2);
     record_store.addRecord(record1);
+    record_store.addRecord(record3);
     record_store.sellRecord(record1);
-    assert.strictEqual(record_store.inventory.length, 1);
+    assert.strictEqual(record_store.inventory.length, 2);
     assert.strictEqual(record_store.balance, 5.95);
   });
 
-  //Create a method that reports the financial situation of the Store, showing the balance and value of inventory.
+  it('should be able to get the current inventory value - no stock', function(){
+    assert.strictEqual(record_store.getInventoryValue(), 0.00);
+  });
+
+  it('should be able to get the current inventory value - with stock', function(){
+    record_store.addRecord(record1);
+    assert.strictEqual(record_store.getInventoryValue(), 5.95);
+  });
+
+  it('should be able to show balance and inventory value - no sales', function(){
+    record_store.addRecord(record1); //5.95
+    record_store.addRecord(record2); //9.99 + 5.95 = 15.94
+    record_store.addRecord(record3); //7.50 + 9.99 + 5.95 = 23.44
+    assert.strictEqual(record_store.reportFinancial(), "Balance: £0.00 - Inventory value: £23.44");
+    record_store.sellRecord(record3);
+  });
+
+  it('should be able to show balance and inventory value - stock sold', function(){
+    record_store.addRecord(record1); //5.95
+    record_store.addRecord(record2); //9.99 + 5.95 = 15.94
+    record_store.addRecord(record3); //7.50 + 9.99 + 5.95 = 23.44
+    record_store.sellRecord(record3); //23.44 - 7.50 = 15.94
+    assert.strictEqual(record_store.reportFinancial(), "Balance: £7.50 - Inventory value: £15.94");
+  });
 
   //Create a method that allows the store to view all Records of a given Genre.
 
