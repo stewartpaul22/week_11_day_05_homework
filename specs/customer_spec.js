@@ -53,13 +53,12 @@ describe('Customer', function(){
     assert.deepStrictEqual(record_store.inventory, [record2, record3, record4]);
   })
 
-  // customer cannot buy record from a record store - no funds
-  xit('cannot buy a record from a store - no funds', function(){
-    // customer balance unchanged
-
-    // record collection unchanged
-    // record store balance unchanged
-    // record store inventory unchanged
+  it('cannot buy a record from a store - no funds', function(){
+    record_store.sellRecord(record1, customer1);
+    assert.strictEqual(customer1.wallet, 0.00);
+    assert.deepStrictEqual(customer1.recordCollection, []);
+    assert.strictEqual(record_store.balance, 0.00);
+    assert.deepStrictEqual(record_store.inventory, [record1, record2, record3, record4]);
   })
 
   // customer can buy record from another customer

@@ -28,11 +28,13 @@ RecordStore.prototype.listInventory = function () {
 };
 
 RecordStore.prototype.sellRecord = function (record, customer) {
-  this.balance += record.price;
-  customer.wallet -= record.price;
-  customer.recordCollection.push(record);
-  const index = this.inventory.indexOf(record);
-  this.inventory.splice(index, 1);
+  if (customer.wallet >= record.price) {
+    this.balance += record.price;
+    customer.wallet -= record.price;
+    customer.recordCollection.push(record);
+    const index = this.inventory.indexOf(record);
+    this.inventory.splice(index, 1);
+  }
 };
 
 RecordStore.prototype.getInventoryValue = function() {
