@@ -1,0 +1,56 @@
+var assert = require('assert');
+var Customer = require('../customer.js');
+var RecordStore = require('../record_store.js');
+var Record = require('../record.js');
+
+describe('Customer', function(){
+
+  var customer1;
+  var customer2;
+  var record_store;
+  var record1;
+  var record2;
+  var record3;
+  var record4;
+
+  beforeEach(function(){
+    customer1 = new Customer('Jeff');
+    customer2 = new Customer('Mary');
+    record_store = new RecordStore('Disc Us', 'Glasgow');
+    record1 = new Record('Black Sabbath', 'Sabbath Bloody Sabbath', 'Metal', 5.95);
+    record2 = new Record('Four Tet', 'New Energy', 'Electronic', 9.99);
+    record3 = new Record('Mary Ocher', 'Eden', 'Experimental', 7.50);
+    record4 = new Record('Oneohtrix Point Never', 'Replica', 'Electronic', 5.95);
+  })
+
+  //  customer has a name
+  it('should have a name', function(){
+    assert.strictEqual(customer1.name, 'Jeff');
+  });
+
+  // customer has a record collection
+
+  // customer has a wallet
+
+  // customer can buy record
+
+
+
+  //Create a RecordCollector (or Customer) constructor who can buy and sell records.
+
+  //The RecordCollector should have cash that increase and decreases with buying and selling.
+
+  //The RecordCollector shouldn't be able to buy a Record if he can't afford it.
+
+  //The RecordCollector should be able to view the total value of their collection
+
+  //The RecordCollector should be able to view the total value of all records of a given Genre
+
+  //The RecordCollector should be able to view their most valuable record.
+
+  //The RecordCollector should be able to sort their records by value. (ascending or descending)
+
+  //The RecordCollector should be able to compare the value of their collection with another RecordCollector
+
+
+});

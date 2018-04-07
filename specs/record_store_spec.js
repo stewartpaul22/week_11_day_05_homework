@@ -83,8 +83,7 @@ describe('Record Store', function(){
     record_store.sellRecord(record3); //23.44 - 7.50 = 15.94
     assert.strictEqual(record_store.reportFinancial(), "Balance: £7.50 - Inventory value: £15.94");
   });
-
-  //Create a method that allows the store to view all Records of a given Genre.
+  
   it('should be able to view all records by genre', function(){
     record_store.addRecord(record1);
     record_store.addRecord(record2);
