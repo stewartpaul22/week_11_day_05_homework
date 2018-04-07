@@ -31,7 +31,9 @@ describe('Customer', function(){
     assert.deepStrictEqual(customer1.recordCollection, []);
   });
 
-  // customer has a wallet
+  it('should have a wallet - zero balance', function(){
+    assert.strictEqual(customer1.wallet, 0.00);
+  });
 
   // customer can buy record
 
