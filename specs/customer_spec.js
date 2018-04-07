@@ -61,32 +61,19 @@ describe('Customer', function(){
     assert.deepStrictEqual(record_store.inventory, [record1, record2, record3, record4]);
   })
 
-  // customer can buy record from another customer
-  xit('can buy a record from another customer - available funds, record available', function(){
-    customer1.sellToOtherCustomer(customer2, record1);
+  it('can buy a record from another customer - available funds', function(){
+    customer1.addFundsToWallet(5.95);
+    customer1.buyRecordFromCustomer(customer2, record1);
     assert.strictEqual(customer1.wallet, 0.00);
     assert.strictEqual(customer2.wallet, 5.95);
+    assert.deepStrictEqual(customer1.recordCollection, [record1]);
   });
 
-  // customer cannot buy record from another customer
-  xit('cannot buy a record from another customer - available funds, record unavailable', function(){
-    customer1.sellToOtherCustomer(customer, record1);
+  it('cannot buy a record from another customer - no funds', function(){
+    customer1.buyRecordFromCustomer(customer2, record1);
     assert.strictEqual(customer1.wallet, 0.00);
-    assert.strictEqual(customer2.wallet, 5.95);
+    assert.strictEqual(customer2.wallet, 0.00);
   });
-
-  // customer cannot buy record from another customer -  no funds
-  xit('cannot buy a record from another customer - no funds, record available', function(){
-
-    assert.strictEqual(customer1.wallet, 0.00);
-    assert.strictEqual(customer2.wallet, 5.95);
-  });
-
-  // customer can sell a record to another customer
-
-  //The RecordCollector should have cash that increase and decreases with buying and selling.
-
-  //The RecordCollector shouldn't be able to buy a Record if he can't afford it.
 
   //The RecordCollector should be able to view the total value of their collection
 
