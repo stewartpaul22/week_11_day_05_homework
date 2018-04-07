@@ -1,10 +1,12 @@
 var assert = require('assert');
 var RecordStore = require('../record_store.js');
+var Customer = require('../customer.js');
 var Record = require('../record.js');
 
 describe('Record Store', function(){
 
   var record_store;
+  var customer1;
   var record1;
   var record2;
   var record3;
@@ -12,6 +14,7 @@ describe('Record Store', function(){
 
   beforeEach(function(){
     record_store = new RecordStore('Disc Us', 'Glasgow');
+    customer1 = new Customer('Jeff');
     record1 = new Record('Black Sabbath', 'Sabbath Bloody Sabbath', 'Metal', 5.95);
     record2 = new Record('Four Tet', 'New Energy', 'Electronic', 9.99);
     record3 = new Record('Mary Ocher', 'Eden', 'Experimental', 7.50);
@@ -54,7 +57,7 @@ describe('Record Store', function(){
     record_store.addRecord(record2);
     record_store.addRecord(record1);
     record_store.addRecord(record3);
-    record_store.sellRecord(record1);
+    record_store.sellRecord(record1, customer1);
     assert.strictEqual(record_store.inventory.length, 2);
     assert.strictEqual(record_store.balance, 5.95);
   });
@@ -73,17 +76,16 @@ describe('Record Store', function(){
     record_store.addRecord(record2); //9.99 + 5.95 = 15.94
     record_store.addRecord(record3); //7.50 + 9.99 + 5.95 = 23.44
     assert.strictEqual(record_store.reportFinancial(), "Balance: £0.00 - Inventory value: £23.44");
-    record_store.sellRecord(record3);
   });
 
   it('should be able to show balance and inventory value - stock sold', function(){
     record_store.addRecord(record1); //5.95
     record_store.addRecord(record2); //9.99 + 5.95 = 15.94
     record_store.addRecord(record3); //7.50 + 9.99 + 5.95 = 23.44
-    record_store.sellRecord(record3); //23.44 - 7.50 = 15.94
+    record_store.sellRecord(record3, customer1); //23.44 - 7.50 = 15.94
     assert.strictEqual(record_store.reportFinancial(), "Balance: £7.50 - Inventory value: £15.94");
   });
-  
+
   it('should be able to view all records by genre', function(){
     record_store.addRecord(record1);
     record_store.addRecord(record2);

@@ -27,8 +27,10 @@ RecordStore.prototype.listInventory = function () {
   // for enumeration, check if there is a stringBuilder
 };
 
-RecordStore.prototype.sellRecord = function (record) {
+RecordStore.prototype.sellRecord = function (record, customer) {
   this.balance += record.price;
+  customer.wallet -= record.price;
+  customer.recordCollection.push(record);
   const index = this.inventory.indexOf(record);
   this.inventory.splice(index, 1);
 };
