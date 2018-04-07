@@ -23,12 +23,13 @@ describe('Customer', function(){
     record4 = new Record('Oneohtrix Point Never', 'Replica', 'Electronic', 5.95);
   })
 
-  //  customer has a name
   it('should have a name', function(){
     assert.strictEqual(customer1.name, 'Jeff');
   });
 
-  // customer has a record collection
+  it('should have a record collection - empty', function(){
+    assert.deepStrictEqual(customer1.recordCollection, []);
+  });
 
   // customer has a wallet
 
