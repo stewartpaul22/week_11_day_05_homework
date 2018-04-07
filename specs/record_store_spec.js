@@ -47,10 +47,16 @@ describe('Record Store', function(){
   it('should be able to list the inventory', function(){
     record_store.addRecord(record1);
     record_store.addRecord(record2);
-    assert.deepStrictEqual(record_store.listInventory(), "artist: Black Sabbath. title: Sabbath Bloody Sabbath. genre: Metal. price: 5.95. \nartist: Four Tet. title: New Energy. genre: Electronic. price: 9.99. \n")
+    assert.strictEqual(record_store.listInventory(), "artist: Black Sabbath. title: Sabbath Bloody Sabbath. genre: Metal. price: 5.95. \nartist: Four Tet. title: New Energy. genre: Electronic. price: 9.99. \n")
   });
 
-  //Create a method so the Record Store can sell a Record and adjusts the Store's balance to account for the Record being sold.
+  it('should be able to sell a record that increases the balance and reduces the inventory', function(){
+    record_store.addRecord(record2);
+    record_store.addRecord(record1);
+    record_store.sellRecord(record1);
+    assert.strictEqual(record_store.inventory.length, 1);
+    assert.strictEqual(record_store.balance, 5.95);
+  });
 
   //Create a method that reports the financial situation of the Store, showing the balance and value of inventory.
 
