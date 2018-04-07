@@ -46,7 +46,7 @@ describe('Customer', function(){
 
   it('can buy a record from a store - has funds', function(){
     customer1.addFundsToWallet(50.00);
-    record_store.sellRecord(record1, customer1);
+    customer1.buyRecordfromStore(record_store, record1);
     assert.strictEqual(customer1.wallet, 44.05);
     assert.deepStrictEqual(customer1.recordCollection, [record1]);
     assert.strictEqual(record_store.balance, 5.95);
@@ -54,7 +54,7 @@ describe('Customer', function(){
   })
 
   it('cannot buy a record from a store - no funds', function(){
-    record_store.sellRecord(record1, customer1);
+    customer1.buyRecordfromStore(record_store, record1);
     assert.strictEqual(customer1.wallet, 0.00);
     assert.deepStrictEqual(customer1.recordCollection, []);
     assert.strictEqual(record_store.balance, 0.00);
@@ -62,6 +62,25 @@ describe('Customer', function(){
   })
 
   // customer can buy record from another customer
+  xit('can buy a record from another customer - available funds, record available', function(){
+    customer1.sellToOtherCustomer(customer2, record1);
+    assert.strictEqual(customer1.wallet, 0.00);
+    assert.strictEqual(customer2.wallet, 5.95);
+  });
+
+  // customer cannot buy record from another customer
+  xit('cannot buy a record from another customer - available funds, record unavailable', function(){
+    customer1.sellToOtherCustomer(customer, record1);
+    assert.strictEqual(customer1.wallet, 0.00);
+    assert.strictEqual(customer2.wallet, 5.95);
+  });
+
+  // customer cannot buy record from another customer -  no funds
+  xit('cannot buy a record from another customer - no funds, record available', function(){
+
+    assert.strictEqual(customer1.wallet, 0.00);
+    assert.strictEqual(customer2.wallet, 5.95);
+  });
 
   // customer can sell a record to another customer
 

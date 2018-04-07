@@ -58,7 +58,7 @@ describe('Record Store', function(){
     record_store.addRecord(record1);
     record_store.addRecord(record3);
     customer1.addFundsToWallet(50.00);
-    record_store.sellRecord(record1, customer1);
+    record_store.sellRecord(record1);
     assert.strictEqual(record_store.inventory.length, 2);
     assert.strictEqual(record_store.balance, 5.95);
   });
@@ -84,7 +84,7 @@ describe('Record Store', function(){
     record_store.addRecord(record2); //9.99 + 5.95 = 15.94
     record_store.addRecord(record3); //7.50 + 9.99 + 5.95 = 23.44
     customer1.addFundsToWallet(50.00);
-    record_store.sellRecord(record3, customer1); //23.44 - 7.50 = 15.94
+    record_store.sellRecord(record3); //23.44 - 7.50 = 15.94
     assert.strictEqual(record_store.reportFinancial(), "Balance: £7.50 - Inventory value: £15.94");
   });
 
