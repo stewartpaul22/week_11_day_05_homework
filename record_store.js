@@ -44,5 +44,15 @@ RecordStore.prototype.reportFinancial = function() {
   return result;
 };
 
+RecordStore.prototype.allByGenre = function(genre) {
+  let result = [];
+  for (let item of this.inventory) {
+    if (item.genre === genre) {
+      result.push(item);
+    }
+  }
+  return result;
+};
+
 
 module.exports = RecordStore;
