@@ -37,8 +37,6 @@ Customer.prototype.collectionValue = function(genre) {
     if (genre === undefined) { total += item.price; }
   }
   return parseFloat(total.toFixed(2));
-
-  // return parseFloat((this.recordCollection.reduce((runningTotal, record) => runningTotal + record.price, 0)).toFixed(2));
 };
 
 Customer.prototype.mostValuableRecord = function() {
@@ -46,7 +44,6 @@ Customer.prototype.mostValuableRecord = function() {
   let keys = _.keys(groups);
   var max = _.max(keys);
   return _.head(groups[max]).price;
-  //return (_.maxBy(this.recordCollection, 'price').price);
 };
 
 Customer.prototype.removeRecordFromCollection = function (record) {
