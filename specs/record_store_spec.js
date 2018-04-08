@@ -43,7 +43,7 @@ describe('Record Store', function(){
     assert.strictEqual(record_store.balance, 0);
   });
 
-  it('should be able to print its properties as a string', function(){
+  it('should be able to print a record\'s properties as a string', function(){
     assert.strictEqual(record_store.printProperties(record1), "artist: Black Sabbath. title: Sabbath Bloody Sabbath. genre: Metal. price: 5.95. \n");
   });
 
