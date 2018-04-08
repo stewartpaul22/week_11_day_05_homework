@@ -106,8 +106,14 @@ describe('Customer', function(){
     assert.strictEqual(customer1.collectionValue(), 15.94);
   });
 
-
-  //The RecordCollector should be able to view the total value of all records of a given Genre
+  it('can view collection value by genre', function(){
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record1);
+    customer1.buyRecordfromStore(record_store, record2);
+    customer1.buyRecordfromStore(record_store, record3);
+    customer1.buyRecordfromStore(record_store, record4);
+    assert.strictEqual(customer1.collectionValue('Electronic'), 15.94);
+  });
 
   //The RecordCollector should be able to view their most valuable record.
 

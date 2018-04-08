@@ -28,8 +28,15 @@ Customer.prototype.sellToCustomer = function(record) {
   return record;
 };
 
-Customer.prototype.collectionValue = function() {
-  return parseFloat((this.recordCollection.reduce((runningTotal, record) => runningTotal + record.price, 0)).toFixed(2));
+Customer.prototype.collectionValue = function(genre) {
+  let total = 0.00;
+  for (let item of this.recordCollection) {
+    if (genre === item.genre) { total += item.price; }
+    if (genre === undefined) { total += item.price; }
+  }
+  return parseFloat(total.toFixed(2));
+
+  // return parseFloat((this.recordCollection.reduce((runningTotal, record) => runningTotal + record.price, 0)).toFixed(2));
 };
 
 Customer.prototype.removeRecordFromCollection = function (record) {
