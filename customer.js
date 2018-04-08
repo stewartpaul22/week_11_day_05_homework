@@ -15,7 +15,10 @@ Customer.prototype.buyRecordfromStore = function (store, record) {
 };
 
 Customer.prototype.buyRecordFromCustomer = function(sellingCustomer, record) {
-  if ((this.wallet < record.price) && !(sellingCustomer.recordCollection.includes(record))) { return }
+  if (this.wallet < record.price) { return }
+
+  if (!(sellingCustomer.recordCollection.includes(record))) { return }
+
   this.recordCollection.push(sellingCustomer.sellToCustomer(record));
   this.decreaseWallet(record);
 };

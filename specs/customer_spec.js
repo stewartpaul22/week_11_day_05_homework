@@ -71,10 +71,19 @@ describe('Customer', function(){
     assert.deepStrictEqual(customer1.recordCollection, [record1]);
   });
 
-  it('cannot buy a record from another customer - no funds', function(){
+  it('cannot buy a record from another customer - no funds, record available', function(){
+    customer2.addFundsToWallet(5.95);
+    customer2.buyRecordfromStore(record_store, record1);
     customer1.buyRecordFromCustomer(customer2, record1);
     assert.strictEqual(customer1.wallet, 0.00);
     assert.strictEqual(customer2.wallet, 0.00);
+  });
+
+  it('cannot buy a record from another customer - funds available, record unavailable', function(){
+    customer1.addFundsToWallet(5.95);
+    customer1.buyRecordFromCustomer(customer2, record1);
+    assert.strictEqual(customer1.wallet, 5.95);
+    assert.deepStrictEqual(customer1.recordCollection, []);
   });
 
   //The RecordCollector should be able to view the total value of their collection
