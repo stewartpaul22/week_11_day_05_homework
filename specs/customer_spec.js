@@ -12,6 +12,7 @@ describe('Customer', function(){
   var record2;
   var record3;
   var record4;
+  var record5;
 
   beforeEach(function(){
     customer1 = new Customer('Jeff');
@@ -21,6 +22,7 @@ describe('Customer', function(){
     record2 = new Record('Four Tet', 'New Energy', 'Electronic', 9.99);
     record3 = new Record('Mary Ocher', 'Eden', 'Experimental', 7.50);
     record4 = new Record('Oneohtrix Point Never', 'Replica', 'Electronic', 5.95);
+    record5 = new Record('New Order', 'Power, Corruption & Lies', 'New wave', 5.95);
     record_store.addRecord(record1);
     record_store.addRecord(record2);
     record_store.addRecord(record3);
@@ -51,7 +53,7 @@ describe('Customer', function(){
     assert.deepStrictEqual(customer1.recordCollection, [record1]);
     assert.strictEqual(record_store.balance, 5.95);
     assert.deepStrictEqual(record_store.inventory, [record2, record3, record4]);
-  })
+  });
 
   it('cannot buy a record from a store - no funds', function(){
     customer1.buyRecordfromStore(record_store, record1);
@@ -59,7 +61,17 @@ describe('Customer', function(){
     assert.deepStrictEqual(customer1.recordCollection, []);
     assert.strictEqual(record_store.balance, 0.00);
     assert.deepStrictEqual(record_store.inventory, [record1, record2, record3, record4]);
-  })
+  });
+
+  it('cannot buy a record from a store - record unavailable', function(){
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record5);
+    assert.strictEqual(customer1.wallet, 50.00);
+    assert.deepStrictEqual(customer1.recordCollection, []);
+    assert.strictEqual(record_store.balance, 0.00);
+    assert.deepStrictEqual(record_store.inventory, [record1, record2, record3, record4]);
+  });
+
 
   it('can buy a record from another customer - available funds, record available', function(){
     customer2.addFundsToWallet(5.95);
