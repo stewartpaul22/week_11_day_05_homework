@@ -99,7 +99,13 @@ describe('Customer', function(){
     assert.deepStrictEqual(customer1.recordCollection, []);
   });
 
-  //The RecordCollector should be able to view the total value of their collection
+  it('can view the total value of their collection', function(){
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record1);
+    customer1.buyRecordfromStore(record_store, record2);
+    assert.strictEqual(customer1.collectionValue(), 15.94);
+  });
+
 
   //The RecordCollector should be able to view the total value of all records of a given Genre
 

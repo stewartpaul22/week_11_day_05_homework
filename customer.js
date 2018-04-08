@@ -28,6 +28,10 @@ Customer.prototype.sellToCustomer = function(record) {
   return record;
 };
 
+Customer.prototype.collectionValue = function() {
+  return parseFloat((this.recordCollection.reduce((runningTotal, record) => runningTotal + record.price, 0)).toFixed(2));
+};
+
 Customer.prototype.removeRecordFromCollection = function (record) {
   const index = this.recordCollection.indexOf(record);
   this.recordCollection.splice(index, 1);
