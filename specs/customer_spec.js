@@ -61,7 +61,9 @@ describe('Customer', function(){
     assert.deepStrictEqual(record_store.inventory, [record1, record2, record3, record4]);
   })
 
-  it('can buy a record from another customer - available funds', function(){
+  it('can buy a record from another customer - available funds, record available', function(){
+    customer2.addFundsToWallet(5.95);
+    customer2.buyRecordfromStore(record_store, record1);
     customer1.addFundsToWallet(5.95);
     customer1.buyRecordFromCustomer(customer2, record1);
     assert.strictEqual(customer1.wallet, 0.00);
