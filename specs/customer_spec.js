@@ -135,7 +135,23 @@ describe('Customer', function(){
     assert.strictEqual(customer1.mostValuableRecord(), 9.99);
   });
 
-  //The RecordCollector should be able to sort their records by value. (ascending or descending)
+  it('can sort collection by value - low to high', function(){
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record1);//5.95
+    customer1.buyRecordfromStore(record_store, record2);//9.99
+    customer1.buyRecordfromStore(record_store, record3);//7.50
+    customer1.buyRecordfromStore(record_store, record4);//5.95
+    assert.deepStrictEqual(customer1.orderCollection('asc', 'asc'), [record4, record1, record3, record2]);
+  });
+
+  it('can sort collection by value - high to low', function(){
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record1);//5.95
+    customer1.buyRecordfromStore(record_store, record2);//9.99
+    customer1.buyRecordfromStore(record_store, record3);//7.50
+    customer1.buyRecordfromStore(record_store, record4);//5.95
+    assert.deepStrictEqual(customer1.orderCollection('desc', 'asc'), [record2, record3, record4, record1]);
+  });
 
   //The RecordCollector should be able to compare the value of their collection with another RecordCollector
 

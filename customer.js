@@ -46,6 +46,10 @@ Customer.prototype.mostValuableRecord = function() {
   return _.head(groups[max]).price;
 };
 
+Customer.prototype.orderCollection = function(priceDirection, titleDirection) {
+  return _.orderBy(this.recordCollection, ['price', 'title'], [priceDirection, titleDirection]);
+};
+
 Customer.prototype.removeRecordFromCollection = function (record) {
   const index = this.recordCollection.indexOf(record);
   this.recordCollection.splice(index, 1);
