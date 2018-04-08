@@ -153,7 +153,7 @@ describe('Customer', function(){
     assert.deepStrictEqual(customer1.orderCollection('desc', 'asc'), [record2, record3, record4, record1]);
   });
 
-  it('can compare collection value with other customer - customer1 lesser', function(){
+  it('can compare collection value with other customer', function(){
     customer1.addFundsToWallet(50.00);
     customer1.buyRecordfromStore(record_store, record1);//5.95
     customer1.buyRecordfromStore(record_store, record2);//9.99
