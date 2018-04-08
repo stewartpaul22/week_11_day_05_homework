@@ -81,6 +81,7 @@ describe('Customer', function(){
     assert.strictEqual(customer1.wallet, 0.00);
     assert.strictEqual(customer2.wallet, 5.95);
     assert.deepStrictEqual(customer1.recordCollection, [record1]);
+    assert.deepStrictEqual(customer2.recordCollection, []);
   });
 
   it('cannot buy a record from another customer - no funds, record available', function(){
