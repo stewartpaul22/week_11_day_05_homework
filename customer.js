@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 var Customer = function(name){
   this.name = name;
   this.recordCollection = [];
@@ -37,6 +39,14 @@ Customer.prototype.collectionValue = function(genre) {
   return parseFloat(total.toFixed(2));
 
   // return parseFloat((this.recordCollection.reduce((runningTotal, record) => runningTotal + record.price, 0)).toFixed(2));
+};
+
+Customer.prototype.mostValuableRecord = function() {
+  let groups = _.groupBy(this.recordCollection, 'price');
+  let keys = _.keys(groups);
+  var max = _.max(keys);
+  return _.head(groups[max]).price;
+  //return (_.maxBy(this.recordCollection, 'price').price);
 };
 
 Customer.prototype.removeRecordFromCollection = function (record) {

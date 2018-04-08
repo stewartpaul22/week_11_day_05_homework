@@ -22,7 +22,7 @@ describe('Customer', function(){
     record2 = new Record('Four Tet', 'New Energy', 'Electronic', 9.99);
     record3 = new Record('Mary Ocher', 'Eden', 'Experimental', 7.50);
     record4 = new Record('Oneohtrix Point Never', 'Replica', 'Electronic', 5.95);
-    record5 = new Record('New Order', 'Power, Corruption & Lies', 'New wave', 5.95);
+    record5 = new Record('New Order', 'Power, Corruption & Lies', 'New wave', 9.99);
     record_store.addRecord(record1);
     record_store.addRecord(record2);
     record_store.addRecord(record3);
@@ -115,7 +115,25 @@ describe('Customer', function(){
     assert.strictEqual(customer1.collectionValue('Electronic'), 15.94);
   });
 
-  //The RecordCollector should be able to view their most valuable record.
+  it('can view their most valuable record - one match', function(){
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record1);
+    customer1.buyRecordfromStore(record_store, record2);//9.99
+    customer1.buyRecordfromStore(record_store, record3);
+    customer1.buyRecordfromStore(record_store, record4);
+    assert.strictEqual(customer1.mostValuableRecord(), 9.99);
+  });
+
+  it('can view their most valuable record - multiple matches', function(){
+    record_store.addRecord(record5);
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record1);
+    customer1.buyRecordfromStore(record_store, record2);//9.99
+    customer1.buyRecordfromStore(record_store, record3);
+    customer1.buyRecordfromStore(record_store, record4);
+    customer1.buyRecordfromStore(record_store, record5);//9.99
+    assert.strictEqual(customer1.mostValuableRecord(), 9.99);
+  });
 
   //The RecordCollector should be able to sort their records by value. (ascending or descending)
 
