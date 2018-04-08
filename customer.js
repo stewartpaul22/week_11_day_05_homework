@@ -50,6 +50,12 @@ Customer.prototype.orderCollection = function(priceDirection, titleDirection) {
   return _.orderBy(this.recordCollection, ['price', 'title'], [priceDirection, titleDirection]);
 };
 
+Customer.prototype.compareCollection = function(otherCustomer) {
+  let custOneCollectionVal = this.collectionValue();
+  let custTwoCollectionVal = otherCustomer.collectionValue();
+  return `${this.name}\'s collection is worth £${custOneCollectionVal}, ${otherCustomer.name}\'s collection is worth £${custTwoCollectionVal}`
+};
+
 Customer.prototype.removeRecordFromCollection = function (record) {
   const index = this.recordCollection.indexOf(record);
   this.recordCollection.splice(index, 1);

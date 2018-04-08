@@ -153,7 +153,15 @@ describe('Customer', function(){
     assert.deepStrictEqual(customer1.orderCollection('desc', 'asc'), [record2, record3, record4, record1]);
   });
 
-  //The RecordCollector should be able to compare the value of their collection with another RecordCollector
-
+  it('can compare collection value with other customer - customer1 lesser', function(){
+    customer1.addFundsToWallet(50.00);
+    customer1.buyRecordfromStore(record_store, record1);//5.95
+    customer1.buyRecordfromStore(record_store, record2);//9.99
+    customer2.addFundsToWallet(50.00);
+    customer2.buyRecordfromStore(record_store, record3);//7.50
+    customer2.buyRecordfromStore(record_store, record4);//5.95
+    let result = customer1.compareCollection(customer2);
+    assert.strictEqual(result, "Jeff's collection is worth £15.94, Mary's collection is worth £13.45");
+  });
 
 });
