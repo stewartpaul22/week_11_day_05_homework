@@ -20,12 +20,9 @@ RecordStore.prototype.printProperties = function(record) {
 };
 
 RecordStore.prototype.listInventory = function () {
-  let result = ""
-  for (let record of this.inventory) {
-    result += this.printProperties(record);
-  }
+  let result = "";
+  (this.inventory).forEach(record => result += (this.printProperties(record)));
   return result;
-  // for enumeration, check if there is a stringBuilder
 };
 
 RecordStore.prototype.sellRecord = function (record) {
