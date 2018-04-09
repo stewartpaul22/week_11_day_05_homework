@@ -16,6 +16,7 @@ RecordStore.prototype.printProperties = function(record) {
   }
   return result + "\n";
   // for enumeration, check if there is a stringBuilder
+
 };
 
 RecordStore.prototype.listInventory = function () {
@@ -54,13 +55,7 @@ RecordStore.prototype.getInventoryValue = function() {
 };
 
 RecordStore.prototype.allByGenre = function(genre) {
-  let result = [];
-  for (let item of this.inventory) {
-    if (item.genre === genre) {
-      result.push(item);
-    }
-  }
-  return result;
+  return (this.inventory).filter(record => record.genre === genre);
 };
 
 
