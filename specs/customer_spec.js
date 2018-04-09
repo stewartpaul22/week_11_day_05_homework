@@ -121,7 +121,7 @@ describe('Customer', function(){
     customer1.buyRecordfromStore(record_store, record2);//9.99
     customer1.buyRecordfromStore(record_store, record3);
     customer1.buyRecordfromStore(record_store, record4);
-    assert.strictEqual(customer1.mostValuableRecord(), 9.99);
+    assert.deepStrictEqual(customer1.mostValuableRecord(), [record2])
   });
 
   it('can view their most valuable record - multiple matches', function(){
@@ -132,7 +132,7 @@ describe('Customer', function(){
     customer1.buyRecordfromStore(record_store, record3);
     customer1.buyRecordfromStore(record_store, record4);
     customer1.buyRecordfromStore(record_store, record5);//9.99
-    assert.strictEqual(customer1.mostValuableRecord(), 9.99);
+    assert.deepStrictEqual(customer1.mostValuableRecord(), [record2, record5]);
   });
 
   it('can sort collection by value - low to high', function(){

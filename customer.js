@@ -43,7 +43,7 @@ Customer.prototype.mostValuableRecord = function() {
   let groups = _.groupBy(this.recordCollection, 'price');
   let keys = _.keys(groups);
   var max = _.max(keys);
-  return _.head(groups[max]).price;
+  return ((this.recordCollection).filter(record => record.price === parseFloat(max)));
 };
 
 Customer.prototype.orderCollection = function(priceDirection, titleDirection) {

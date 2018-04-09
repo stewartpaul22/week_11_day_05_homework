@@ -15,8 +15,6 @@ RecordStore.prototype.printProperties = function(record) {
     result += property + ": " + record[property] + ". ";
   }
   return result + "\n";
-  // for enumeration, check if there is a stringBuilder
-
 };
 
 RecordStore.prototype.listInventory = function () {
